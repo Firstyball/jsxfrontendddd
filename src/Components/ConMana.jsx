@@ -9,7 +9,9 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Renderstudents(estudi){
+    console.log(estudi.id);
     return(
+        <div key={estudi.id}>
         <Row>
             <Col sm="12">
                 <Card body>
@@ -34,12 +36,12 @@ function Renderstudents(estudi){
                     </CardBody>
                     <CardFooter>
                         <Row>
-                            <Col sm-6>
+                            <Col sm='6'>
                                 <Button block outline color="primary">
                                     Edit
                                 </Button>
                             </Col>
-                            <Col sm-6>
+                            <Col sm='6'>
                                 <Button block outline color="danger" >
                                     delete
                                 </Button>
@@ -49,6 +51,7 @@ function Renderstudents(estudi){
                 </Card>
             </Col>
         </Row>
+        </div>
     );
 
 

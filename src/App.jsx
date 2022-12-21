@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {HashRouter, Route, Routes} from "react-router-dom";
 import Nav from "./Components/Nav.jsx";
 import {MenuManagement} from "./Components/MenuManagement";
-import {ManageStudents} from "./Components/ManageStudents";
 import {Renstudent} from "./Components/Renstudent";
 
 
