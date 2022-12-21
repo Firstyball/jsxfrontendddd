@@ -34,9 +34,18 @@ function tutu(tutu) {
 
 
     return (
-      <div>
-          <ConMana student={student}/>
+        <div>
+        <Container className="mt-4">
+            <Row>
+                <Col sm='12'>
+                    <Button block color="success" >
+                        <span className="font-size-l">Create New Student</span>
+                    </Button>
+                </Col>
+            </Row>
+        </Container>
 
+          <ConMana student={student}/>
       </div>
     )
 }export {Renstudent}

@@ -15,9 +15,9 @@ function App() {
         <HashRouter>
             <MenuNav/>
             <MenuManagement/>
-<Renstudent/>
+
             <Routes>
-                <Route path="/students" element={<ManageStudents/>}/>
+                <Route path="/students" element={<Renstudent/>}/>
 
 
             </Routes>
