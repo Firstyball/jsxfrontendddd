@@ -2,9 +2,8 @@ import './App.css'
 import {MenuNav} from "./Components/MenuNav";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {HashRouter, Route, Routes} from "react-router-dom";
-import Nav from "./Components/Nav.jsx";
 import {MenuManagement} from "./Components/MenuManagement";
-import {Renstudent} from "./Components/Renstudent";
+import {ManageStudents} from "./Components/ManageStudents";
 
 
 
@@ -16,7 +15,7 @@ function App() {
             <MenuManagement/>
 
             <Routes>
-                <Route path="/students" element={<Renstudent/>}/>
+                <Route path="/students" element={<ManageStudents/>}/>
 
 
             </Routes>

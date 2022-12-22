@@ -1,11 +1,6 @@
 import React from 'react'
-import {Button, Card, CardBody, CardFooter, CardText, CardTitle, Col, Container, Navbar, NavbarBrand, Row } from "reactstrap";
-import {
-    IoSchoolOutline,
-    IoMan,
-    IoSettings,
-    IoWomanOutline
-} from "react-icons/io5";
+import  {Navbar, NavbarBrand } from "reactstrap";
+import { IoSchoolOutline} from "react-icons/io5";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MenuNav() {

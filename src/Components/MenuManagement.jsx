@@ -1,15 +1,21 @@
-import React from 'react'
-import {Button, Card, CardBody, CardFooter, CardText, CardTitle, Col, Container, Navbar, NavbarBrand, Row } from "reactstrap";
-import {
-    IoSchoolOutline,
-    IoMan,
-    IoSettings,
-    IoWomanOutline
-} from "react-icons/io5";
+import React, {useEffect, useState} from 'react';
+import {Button, Card, CardText, CardTitle, Col, Container, Row } from "reactstrap";
+import {IoSchoolOutline, IoMan, IoSettings } from "react-icons/io5";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Link} from "react-router-dom";
+import client from "../api/student.js";
 
-function MenuManagement() {
+export const MenuManagement = () => {
+
+    const [student, setStudent] = useState([]);
+
+    useEffect(() => {
+        client.get('/list').then((response) => {
+            setStudent(response.data);
+            console.log(`student in menu : ${ JSON.stringify(student)}`);
+         });
+    }, []);
+
     return(
         <div>
             <Container className="mt-3">
@@ -17,7 +23,7 @@ function MenuManagement() {
                     <Col sm='4'>
                         <Card body>
                             <CardTitle tag="h5">
-                                <IoMan className="font-size-xl"/> 86 Students
+                                <IoMan className="font-size-xl"/> {student.length} Students
                             </CardTitle>
                             <CardText>
                                 With supporting text below as a natural lead-in to additional
@@ -52,4 +58,4 @@ function MenuManagement() {
             </Container>
         </div>
     )
-}export {MenuManagement}
+}
