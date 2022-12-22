@@ -40,7 +40,7 @@ export const MenuManagement = () => {
                             With supporting text below as a natural lead-in to additional
                             content.
                         </CardText>
-                        <Button>Manage Teachers</Button>
+                        <Link to="/creation"><Button>Manage Teachers</Button></Link>
                     </Card>
                     </Col>
                     <Col sm='4'> <Card body>
@@ -51,7 +51,8 @@ export const MenuManagement = () => {
                             With supporting text below as a natural lead-in to additional
                             content.
                         </CardText>
-                        <Button>Manage Employees</Button>
+                        <Link to="/click"><Button>Manage Employees</Button></Link>
+
                     </Card>
                     </Col>
                 </Row>

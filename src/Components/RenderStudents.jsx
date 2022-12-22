@@ -2,9 +2,17 @@ import React from 'react'
 import {Button, Card, CardBody, CardFooter, CardTitle, Col, Row } from "reactstrap";
 import {IoMan} from "react-icons/io5";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import client from "../api/student.js";
 
 //Renderiza la información de un estudiante
 export const RenderStudentData = (data) => {
+    function refreshPage() {
+        window.location.reload(false);
+    }
+    function deleteStudents(id) {
+        client.delete(`/delete/${id}`).then(refreshPage)
+    }
+
     return(
         <div key={data.id}>
             <Row>
@@ -16,15 +24,15 @@ export const RenderStudentData = (data) => {
                         <CardBody>
                             <Row>
                                 <Col sm="4" className="text-center">
-                                    <span className="font-weight-bold">Class</span>
+                                    <span className="fw-bold">Class:</span>
                                     <span> Second Year</span>
                                 </Col>
                                 <Col sm="4" className="text-center">
-                                    <span className="font-weight-bold">Age</span>
+                                    <span className="fw-bold">Age:</span>
                                     <span> {data.age} </span>
                                 </Col>
                                 <Col sm="4" className="text-center">
-                                    <span className="font-weight-bold">Teacher</span>
+                                    <span className="fw-bold">Teacher:</span>
                                     <span> {data.teacher} </span>
                                 </Col>
                             </Row>
@@ -37,7 +45,7 @@ export const RenderStudentData = (data) => {
                                     </Button>
                                 </Col>
                                 <Col sm='6'>
-                                    <Button block outline color="danger" >
+                                    <Button block outline color="danger" onClick={() => deleteStudents(data.id)}>
                                         delete
                                     </Button>
                                 </Col>
