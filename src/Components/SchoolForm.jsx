@@ -3,7 +3,7 @@ import {Button, ButtonGroup, Col, Form, FormGroup, Input, Label} from "reactstra
 import 'bootstrap/dist/css/bootstrap.min.css';
 import client from "../api/student.js";
 
-export const SchoolForm = ({data, handleShow}) => {
+export const SchoolForm = ({data, handleShow, type}) => {
 
     console.log(`Form:  ${data}`);
 
@@ -26,11 +26,21 @@ export const SchoolForm = ({data, handleShow}) => {
 
     async function handle(e) {
         e.preventDefault();
-        client.put('/update', creation).then(res => {
-            if(res.status === 200) {
-                handleShow("success");
-            }
-        })
+        if(type === "student") {
+            client.put('/update', creation).then(res => {
+                if(res.status === 200) {
+                    handleShow("success");
+                }
+            })
+        }
+        else if(type === "teacher") {
+            client.put('/profesores/update', creation).then(res => {
+                if(res.status === 200) {
+                    handleShow("success");
+                }
+            })
+        }
+
     }
 
     return(
@@ -104,7 +114,7 @@ export const SchoolForm = ({data, handleShow}) => {
                 <Button color="danger"  onClick={() =>handleShow("cancel")}>
                     Cancelar
                 </Button>
-                <Button color="primary" type="submit" >
+                <Button color="primary" type="submit" onClick={() =>handleShow("create")} >
                     Aceptar
                 </Button>
             </ButtonGroup>

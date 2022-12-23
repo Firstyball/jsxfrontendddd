@@ -50,12 +50,12 @@ export const ManageTeacher = ({teachers}) =>{
             <div className="grid-card-group">
                 {
                     teachers.map((teacher) =>
-                        <GridManager key={teacher.id} data={teacher}/>
+                        <GridManager key={teacher.id} data={teacher} type="teacher"/>
                     )
                 }
             </div>
 
-            <ModalComponent show={show} handleShow={handleShow} title="Crear Nuevo Profesor"/>
+            <ModalComponent show={show} handleShow={handleShow} title="Crear Nuevo Profesor" type="teacher"/>
 
         </div>
     );

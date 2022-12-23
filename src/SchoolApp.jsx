@@ -36,7 +36,7 @@ export const SchoolApp = () => {
     <>
         <HashRouter>
             <MenuNav/>
-                <MenuManagement students={students}/>
+                <MenuManagement students={students} teachers={teachers}/>
 
                 <div className="schoolapp-body">
                     <Routes>

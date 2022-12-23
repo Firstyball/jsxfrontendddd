@@ -2,7 +2,7 @@ import {Modal,ModalHeader, ModalBody} from "reactstrap";
 import {SchoolForm} from "./SchoolForm.jsx";
 import {useState} from 'react';
 
-export const ModalComponent =  ({show, data, handleShow, title}) => {
+export const ModalComponent =  ({show, data, handleShow, title, type}) => {
 
 
     const onLoginFormSubmit = (e) => {
@@ -18,7 +18,7 @@ export const ModalComponent =  ({show, data, handleShow, title}) => {
                     {title}
                 </ModalHeader>
                 <ModalBody>
-                    <SchoolForm onSubmit={onLoginFormSubmit}  data={data} handleShow={handleShow} />
+                    <SchoolForm onSubmit={onLoginFormSubmit}  data={data} handleShow={handleShow} type={type} />
                 </ModalBody>
             </Modal>
         </>

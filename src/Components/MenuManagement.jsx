@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Link} from "react-router-dom";
 import '../SchoolApp.css'
 
-export const MenuManagement = ({students}) => {
+export const MenuManagement = ({students, teachers}) => {
 
 
     return(
@@ -22,7 +22,7 @@ export const MenuManagement = ({students}) => {
                 </Card>
                 <Card className="grid-card-container menu-card">
                     <CardTitle tag="h5">
-                        <IoSchoolOutline className="font-size-xl"/> 20 Profesores
+                        <IoSchoolOutline className="font-size-xl"/> {teachers.length} Profesores
                     </CardTitle>
                     <CardText>
                         Aquí puede gestionar los profesores

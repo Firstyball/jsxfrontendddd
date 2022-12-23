@@ -27,6 +27,7 @@ export const ManageStudents = ({students}) => {
             case "success":
                 setShow(!show);
                 toggleShowA(true);
+                refreshPage();
               break;
             default:
                 console.error(`Wrong type`);
@@ -40,7 +41,7 @@ export const ManageStudents = ({students}) => {
     return (
         <>
             <ToastComponent toggleShowA={toggleShowA} showA={showA} variant="success" title="Satisfactorio!" message="Creación de estudiante exitosa"></ToastComponent>
-            <ModalComponent show={show} handleShow={handleShow} title="Crear Nuevo Estudiante"/>
+            <ModalComponent type="student" show={show} handleShow={handleShow} title="Crear Nuevo Estudiante"/>
             <div className="creation-button">
                 <Button color="info" onClick={() => handleShow("create")} className="button-font">
                     <span className="font-size-l">Agregar Nuevo Estudiante</span>
@@ -50,7 +51,7 @@ export const ManageStudents = ({students}) => {
             <div className="grid-card-group">
                 {
                     students.map((student) =>
-                        <GridManager key={student.id} data={student}/>
+                        <GridManager key={student.id} data={student} type="student"/>
                     )
                 }
             </div>

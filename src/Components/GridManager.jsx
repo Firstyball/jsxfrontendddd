@@ -8,10 +8,14 @@ import {ModalComponent} from "./ModalComponent.jsx"
 import {ToastComponent} from "./ToastComponent.jsx";
 
 //Renderiza la información de un estudiante
-export const GridManager = ({data}) => {
+export const GridManager = ({data, type}) => {
 
-    function deleteStudents(id) {
-        client.delete(`/delete/${id}`).then(refreshPage());
+    function handleDelete(id) {
+        if(type === "student") {
+            client.delete(`/delete/${id}`).then(refreshPage());
+        } else if (type === "teacher") {
+            client.delete(`/profesores/delete/${id}`).then(refreshPage());
+        }
     }
 
     const [show, setShow] = useState(false);
@@ -39,7 +43,8 @@ export const GridManager = ({data}) => {
           }
     };
 
-    const [showA, setShowA] = useState(true);
+
+    const [showA, setShowA] = useState(false);
     const toggleShowA = () => setShowA(!showA);
 
 
@@ -70,14 +75,14 @@ export const GridManager = ({data}) => {
                     <Button block outline color="primary" className="grid-button" onClick={() => handleShow("edit")}>
                         Modificar
                     </Button>
-                    <Button block outline color="danger" className="grid-button" onClick={() => deleteStudents(data.id)}>
+                    <Button block outline color="danger" className="grid-button" onClick={() => handleDelete(data.id)}>
                         Eliminar
                     </Button>
                 </div>
             </CardBody>
         </Card>
 
-        <ModalComponent show={show} data={data} handleShow={handleShow} title="Modificar Estudiante"/>
+        <ModalComponent show={show} data={data} handleShow={handleShow} title="Modificar Estudiante" type={type}/>
 
     </>
     );
