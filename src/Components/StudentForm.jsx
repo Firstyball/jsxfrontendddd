@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useNavigate} from "react-router-dom";
 import client from "../api/student.js";
 
-function StudentEdit(studentId) {
+export const StudentForm = ({data, handleShow}) => {
+    console.log(`StudentForm ${JSON.stringify(data)}`);
     function refreshPage() {
         window.location.reload(false);
     }
@@ -16,9 +17,10 @@ function StudentEdit(studentId) {
         navigate("/students")
     }
 
+    const handleClose = () => setShow(!show);
 
     const [creation, setCreation] = useState({
-        studentId,
+        id: data.id,
         firstName: "",
         lastName: "",
         age: 0,
@@ -47,10 +49,9 @@ function StudentEdit(studentId) {
                 <Input
                     id="firstName"
                     name="firstName"
-                    placeholder="Nombre"
+                    placeholder={data.firstName}
                     required
                     onChange={handleChange}
-
                 />
             </FormGroup>
 
@@ -61,11 +62,9 @@ function StudentEdit(studentId) {
                 <Input
                     id="lastName"
                     name="lastName"
-                    placeholder="Apellido"
+                    placeholder={data.lastName}
                     required
                     onChange={handleChange}
-
-
                 />
             </FormGroup>
 
@@ -76,12 +75,10 @@ function StudentEdit(studentId) {
                 <Input
                     id="age"
                     name="age"
-                    placeholder="Edad"
+                    placeholder={data.age}
                     type="number"
                     required
                     onChange={handleChange}
-
-
                 />
             </FormGroup>
 
@@ -92,22 +89,20 @@ function StudentEdit(studentId) {
                 <Input
                     id="teacher"
                     name="teacher"
-                    placeholder="Profesor"
+                    placeholder={data.teacher}
                     required
                     onChange={handleChange}
-               
-
                 />
             </FormGroup>
             <ButtonGroup className="my-2 form-button-group">
-                <Button color="danger"  onClick={refreshPage}>
+                <Button color="danger"  onClick={handleShow}>
                     Cancelar
                 </Button>
-                <Button color="primary" type="submit">
-                    Crear Estudiante
+                <Button color="primary" type="submit" onClick={handleShow}>
+                    Modificar Estudiante
                 </Button>
             </ButtonGroup>
 
         </Form>
     )
-}export {StudentEdit}
+}

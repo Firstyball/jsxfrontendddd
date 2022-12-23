@@ -1,21 +1,10 @@
-import {
-    Button,
-    Card,
-    CardBody,
-    CardFooter,
-    CardTitle,
-    ButtonGroup,
-    CardGroup,
-    CardText,
-    Modal,
-    ModalHeader, ModalBody
-} from "reactstrap";
+import {Button,Card,CardBody,CardTitle, CardText,Modal,ModalHeader, ModalBody} from "reactstrap";
 import {IoMan} from "react-icons/io5";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import client from "../api/student.js";
 import '../SchoolApp.css';
 import {useState} from "react";
-import {StudentEdit} from "./StudentEdit.jsx";
+import {ModalComponent} from "./ModalComponent.jsx"
 
 //Renderiza la información de un estudiante
 export const GridManager = ({data}) => {
@@ -28,20 +17,11 @@ export const GridManager = ({data}) => {
     }
 
     const [show, setShow] = useState(false);
-
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
-
-    const toggle = () => setShow(!show);
-
-    const onLoginFormSubmit = (e) => {
-        e.preventDefault();
-        handleClose();
-    };
+    const handleShow = () => {console.log('me ejecuto papi'); setShow(!show);};
 
 
     return(
-<div>
+    <>
         <Card outline className="grid-card-container">
             <CardBody>
                 <CardTitle tag="h5">
@@ -72,15 +52,9 @@ export const GridManager = ({data}) => {
             </CardBody>
         </Card>
 
-    <Modal isOpen={show} toggle={toggle} >
-        <ModalHeader >
-            Edit Student
-        </ModalHeader>
-        <ModalBody>
-            <StudentEdit onSubmit={onLoginFormSubmit} id={data.id}/>
-        </ModalBody>
-    </Modal>
-</div>
+        <ModalComponent show={show} data={data} handleShow={handleShow}/>
+
+    </>
     );
 }
 

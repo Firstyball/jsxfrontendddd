@@ -3,6 +3,7 @@ import {Button, Col, Container, Modal, ModalBody, ModalHeader, Row, CardGroup} f
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {GridManager} from "./GridManager";
 import {StudentCreation} from "./StudentCreation.jsx";
+import '../SchoolApp.css'
 
 export const ManageStudents = ({students}) => {
 
