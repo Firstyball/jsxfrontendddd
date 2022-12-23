@@ -1,19 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Col, Container, Modal, ModalBody, ModalHeader, Row} from "reactstrap";
+import {useEffect, useState} from 'react';
+import {Button, Col, Container, Modal, ModalBody, ModalHeader, Row, CardGroup} from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {RenderStudents} from "./RenderStudents";
-import client from "../api/student.js";
+import {GridManager} from "./GridManager";
 import {StudentCreation} from "./StudentCreation.jsx";
 
-export const ManageStudents = () => {
-    const [student, setStudent] = useState([]);
+export const ManageStudents = ({students}) => {
 
-    useEffect(() => {
-        client.get('/list').then((response) => {
-            setStudent(response.data);
-            console.log(`student xd : ${ JSON.stringify(student)}`);
-         });
-    }, []);
     const [show, setShow] = useState(false);
 
     const handleShow = () => setShow(true);
@@ -27,29 +19,32 @@ export const ManageStudents = () => {
         handleClose();
     };
     return (
-        <div>
-            <Container className="mt-4 mb-4">
-                <Row>
-                    <Col sm='12'>
-                        <Button block color="success" onClick={handleShow} >
-                            <span className="font-size-l">Create New Student</span>
-                        </Button>
-                    </Col>
-                </Row>
-            </Container>
+        <>
+            <div className="student-button">
+                <Button color="info" onClick={handleShow} className="button-font">
+                    <span className="font-size-l">Agregar Nuevo Estudiante</span>
+                </Button>
+            </div>
 
-            <RenderStudents data={student}/>
+            <div className="grid-card-group">
+                {
+                    students.map((student) =>
+                        <GridManager key={student.id} data={student}/>
+                    )
+                }
+            </div>
+
 
             <Modal isOpen={show} toggle={toggle}>
-                <ModalHeader >
-                    New Student
+                <ModalHeader>
+                    Crear Nuevo Estudiante
                 </ModalHeader>
                 <ModalBody>
                     <StudentCreation onSubmit={onLoginFormSubmit} />
                 </ModalBody>
 
             </Modal>
-      </div>
+      </>
     );
 
 }

@@ -1,0 +1,98 @@
+
+.font-size-xxl {
+  font-size: 3em;
+
+}
+
+.font-size-xl {
+  font-size: 2em;
+
+}
+
+.font-size-l {
+  font-size: 1.5em;
+
+}
+
+.font-size-m {
+  font-size: 1em;
+
+}
+
+.schoolapp-body {
+  padding: 0rem 2rem 2rem 2rem;
+  position: absolute;
+}
+
+
+
+.grid-card-text {
+  display: flex;
+  justify-content: space-between;
+  margin: 1% 0.5% 0 0.5%;
+}
+
+.grid-button-container {
+  display: flex;
+  justify-content: flex-end;
+  float: right;
+  width: 50%;
+}
+
+.grid-button {
+  margin-left: 1%;
+}
+
+.grid-card-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid-card-container {
+  margin: 1%;
+  width: 30%;
+}
+
+.classroom {
+}
+
+.demo-b {
+  opacity: 0.9;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 300px;
+  background-color: #202020;
+}
+
+
+.schoolapp-header {
+  overflow: hidden;
+  position: relative;
+  /*width: 100%;
+  height: 405px;
+  background-color: purple;
+  background-position: center;*/
+}
+
+.menu-card {
+  padding: 1%
+}
+
+.menu-background {
+  background-color: #202020;
+  padding: 2rem;
+  opacity: 0.9;
+}
+
+.student-button {
+  padding: 1rem;
+}
+
+.button-font {
+  color: #ffffff !important;
+}
+.form-button-group {
+  float: right;
+}

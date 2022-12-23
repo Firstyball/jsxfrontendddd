@@ -1,62 +1,47 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Card, CardText, CardTitle, Col, Container, Row } from "reactstrap";
+import {Button, Card, CardText, CardTitle } from "reactstrap";
 import {IoSchoolOutline, IoMan, IoSettings } from "react-icons/io5";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Link} from "react-router-dom";
-import client from "../api/student.js";
+import '../SchoolApp.css'
 
-export const MenuManagement = () => {
+export const MenuManagement = ({students}) => {
 
-    const [student, setStudent] = useState([]);
-
-    useEffect(() => {
-        client.get('/list').then((response) => {
-            setStudent(response.data);
-            console.log(`student in menu : ${ JSON.stringify(student)}`);
-         });
-    }, []);
 
     return(
-        <div>
-            <Container className="mt-3">
-                <Row>
-                    <Col sm='4'>
-                        <Card body>
-                            <CardTitle tag="h5">
-                                <IoMan className="font-size-xl"/> {student.length} Students
-                            </CardTitle>
-                            <CardText>
-                                With supporting text below as a natural lead-in to additional
-                                content.
-                            </CardText>
-                            <Link to="/students"><Button>Manage Students</Button></Link>
-                        </Card>
-                    </Col>
-                    <Col sm='4'> <Card body>
-                        <CardTitle tag="h5">
-                            <IoSchoolOutline className="font-size-xl"/> 20 Teachers
-                        </CardTitle>
-                        <CardText>
-                            With supporting text below as a natural lead-in to additional
-                            content.
-                        </CardText>
-                        <Link to="/creation"><Button>Manage Teachers</Button></Link>
-                    </Card>
-                    </Col>
-                    <Col sm='4'> <Card body>
-                        <CardTitle tag="h5">
-                            <IoSettings className="font-size-xl"/> 13 Employees
-                        </CardTitle>
-                        <CardText>
-                            With supporting text below as a natural lead-in to additional
-                            content.
-                        </CardText>
-                        <Link to="/click"><Button>Manage Employees</Button></Link>
+        <>
+            <div className="grid-card-group menu-background">
+                <Card className="grid-card-container menu-card">
+                    <CardTitle tag="h5">
+                        <IoMan className="font-size-xl"/> {students.length} Students
+                    </CardTitle>
+                    <CardText>
+                        With supporting text below as a natural lead-in to additional
+                        content.
+                    </CardText>
+                    <Link to="/students"><Button outline color="info">Gestionar estudiantes</Button></Link>
 
-                    </Card>
-                    </Col>
-                </Row>
-            </Container>
-        </div>
+                </Card>
+                <Card className="grid-card-container menu-card">
+                    <CardTitle tag="h5">
+                        <IoSchoolOutline className="font-size-xl"/> 20 Profesores
+                    </CardTitle>
+                    <CardText>
+                        With supporting text below as a natural lead-in to additional
+                        content.
+                    </CardText>
+                    <Link to="/creation"><Button outline color="info">Gestionar Profesores</Button></Link>
+                </Card>
+                <Card className="grid-card-container menu-card">
+                    <CardTitle tag="h5">
+                        <IoSettings className="font-size-xl"/> 13 Empleados
+                    </CardTitle>
+                    <CardText>
+                        With supporting text below as a natural lead-in to additional
+                        content.
+                    </CardText>
+                    <Link to="/click"><Button outline color="info">Gestionar Empleados</Button></Link>
+                </Card>
+            </div>
+        </>
     )
 }

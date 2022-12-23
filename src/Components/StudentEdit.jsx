@@ -1,12 +1,11 @@
-import {useState} from 'react';
-import {Button, Form, ButtonGroup, Input, FormGroup, Label } from 'reactstrap';
-import client from "../api/student.js";
+import React, {useState} from 'react'
+import {Button, ButtonGroup, Col, Form, FormGroup, Input, Label, Navbar, NavbarBrand, Row} from "reactstrap";
+import { IoSchoolOutline} from "react-icons/io5";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {useNavigate} from "react-router-dom";
-import student from '../api/student.js';
+import client from "../api/student.js";
 
-
-export const StudentCreation = (args) => {
-
+function StudentEdit(studentId) {
     function refreshPage() {
         window.location.reload(false);
     }
@@ -19,28 +18,27 @@ export const StudentCreation = (args) => {
 
 
     const [creation, setCreation] = useState({
-        firstName: " ",
-        lastName: " ",
+        studentId,
+        firstName: "",
+        lastName: "",
         age: 0,
-        teacher: " "
+        teacher: ""
     })
 
     function handleChange({target}) {
-        console.log(`target name:  ${target.name} target value: ${target.value} `);
-            setCreation({
-                ...creation,
-                [target.name]: target.value
-            })
-
+        setCreation({
+            ...creation,
+            [target.name]: target.value
+        })
+        console.log(creation)
     }
 
     async function handle(e) {
         e.preventDefault();
-        client.post('/create', creation).then(refreshPage)
+        client.put('/update', creation).then(res => {console.log(res)})
 
     }
-
-    return (
+    return(
         <Form onSubmit={handle}>
             <FormGroup>
                 <Label for="firstName">
@@ -52,8 +50,7 @@ export const StudentCreation = (args) => {
                     placeholder="Nombre"
                     required
                     onChange={handleChange}
-                    invalid = {!creation.firstName}
-                    valid = {creation.firstName && creation.firstName !== " "}
+
                 />
             </FormGroup>
 
@@ -67,8 +64,7 @@ export const StudentCreation = (args) => {
                     placeholder="Apellido"
                     required
                     onChange={handleChange}
-                    invalid = {!creation.lastName}
-                    valid = {creation.lastName && creation.lastName !== " "}
+
 
                 />
             </FormGroup>
@@ -84,8 +80,7 @@ export const StudentCreation = (args) => {
                     type="number"
                     required
                     onChange={handleChange}
-                    invalid = {!creation.age && creation.age !== 0}
-                    valid = {creation.age}
+
 
                 />
             </FormGroup>
@@ -100,8 +95,7 @@ export const StudentCreation = (args) => {
                     placeholder="Profesor"
                     required
                     onChange={handleChange}
-                    invalid = {!creation.teacher}
-                    valid = {creation.teacher && creation.teacher !== " "}
+               
 
                 />
             </FormGroup>
@@ -115,5 +109,5 @@ export const StudentCreation = (args) => {
             </ButtonGroup>
 
         </Form>
-    );
-}
+    )
+}export {StudentEdit}

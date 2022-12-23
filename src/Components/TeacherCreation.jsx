@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col, Container, Form} from 'reactstrap';
 import {StudentCreation} from "./StudentCreation.jsx";
 import client from "../api/student.js";
