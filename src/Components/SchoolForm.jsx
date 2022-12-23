@@ -1,30 +1,19 @@
-import React, {useState} from 'react'
-import {Button, ButtonGroup, Col, Form, FormGroup, Input, Label, Navbar, NavbarBrand, Row} from "reactstrap";
-import { IoSchoolOutline} from "react-icons/io5";
+import {useState} from 'react'
+import {Button, ButtonGroup, Col, Form, FormGroup, Input, Label} from "reactstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useNavigate} from "react-router-dom";
 import client from "../api/student.js";
 
-export const StudentForm = ({data, handleShow}) => {
-    console.log(`StudentForm ${JSON.stringify(data)}`);
-    function refreshPage() {
-        window.location.reload(false);
-    }
+export const SchoolForm = ({data, handleShow}) => {
 
-    const navigate = useNavigate();
+    console.log(`Form:  ${data}`);
 
-    function returnToStudents() {
-        navigate("/students")
-    }
-
-    const handleClose = () => setShow(!show);
 
     const [creation, setCreation] = useState({
-        id: data.id,
-        firstName: "",
-        lastName: "",
-        age: 0,
-        teacher: ""
+        id: data ? data.id : null,
+        firstName: data ? data.firstName : " ",
+        lastName: data ? data.lastName : " ",
+        age: data ? data.age : " ",
+        teacher: data ? data.teacher : " "
     })
 
     function handleChange({target}) {
@@ -37,10 +26,16 @@ export const StudentForm = ({data, handleShow}) => {
 
     async function handle(e) {
         e.preventDefault();
-        client.put('/update', creation).then(res => {console.log(res)})
-
+        client.put('/update', creation).then(res => {
+            if(res.status === 200) {
+                handleShow("success");
+            }
+        })
     }
+
     return(
+        <>
+
         <Form onSubmit={handle}>
             <FormGroup>
                 <Label for="firstName">
@@ -49,9 +44,12 @@ export const StudentForm = ({data, handleShow}) => {
                 <Input
                     id="firstName"
                     name="firstName"
-                    placeholder={data.firstName}
+                    placeholder="Nombre"
+                    defaultValue={data ? data.firstName : null}
                     required
                     onChange={handleChange}
+                    invalid = {!creation.firstName}
+
                 />
             </FormGroup>
 
@@ -62,9 +60,11 @@ export const StudentForm = ({data, handleShow}) => {
                 <Input
                     id="lastName"
                     name="lastName"
-                    placeholder={data.lastName}
+                    placeholder="Apellido"
+                    defaultValue={data ? data.lastName : null}
                     required
                     onChange={handleChange}
+                    invalid = {!creation.lastName}
                 />
             </FormGroup>
 
@@ -75,10 +75,13 @@ export const StudentForm = ({data, handleShow}) => {
                 <Input
                     id="age"
                     name="age"
-                    placeholder={data.age}
+                    placeholder="Edad"
+                    defaultValue={data ? data.age : null}
                     type="number"
                     required
                     onChange={handleChange}
+                    invalid = {!creation.age}
+
                 />
             </FormGroup>
 
@@ -89,20 +92,27 @@ export const StudentForm = ({data, handleShow}) => {
                 <Input
                     id="teacher"
                     name="teacher"
-                    placeholder={data.teacher}
+                    placeholder="Profesor"
+                    defaultValue={data ? data.teacher : null}
                     required
                     onChange={handleChange}
+                    invalid = {!creation.teacher}
+
                 />
             </FormGroup>
             <ButtonGroup className="my-2 form-button-group">
-                <Button color="danger"  onClick={handleShow}>
+                <Button color="danger"  onClick={() =>handleShow("cancel")}>
                     Cancelar
                 </Button>
-                <Button color="primary" type="submit" onClick={handleShow}>
-                    Modificar Estudiante
+                <Button color="primary" type="submit" >
+                    Aceptar
                 </Button>
             </ButtonGroup>
 
         </Form>
+
+
+
+            </>
     )
 }

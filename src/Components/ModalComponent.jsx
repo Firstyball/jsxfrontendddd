@@ -1,8 +1,8 @@
-import {Button,Card,CardBody,CardTitle, CardText,Modal,ModalHeader, ModalBody} from "reactstrap";
-import {useState} from "react";
-import {StudentForm} from "./StudentForm.jsx";
+import {Modal,ModalHeader, ModalBody} from "reactstrap";
+import {SchoolForm} from "./SchoolForm.jsx";
+import {useState} from 'react';
 
-export const ModalComponent =  ({show, data, handleShow}) => {
+export const ModalComponent =  ({show, data, handleShow, title}) => {
 
 
     const onLoginFormSubmit = (e) => {
@@ -11,13 +11,16 @@ export const ModalComponent =  ({show, data, handleShow}) => {
     };
 
     return (
-        <Modal isOpen={show}>
-            <ModalHeader >
-                Modificar Estudiante
-            </ModalHeader>
-            <ModalBody>
-                <StudentForm onSubmit={onLoginFormSubmit}  data={data} handleShow={handleShow} />
-            </ModalBody>
-        </Modal>
+        <>
+
+            <Modal isOpen={show}>
+                <ModalHeader >
+                    {title}
+                </ModalHeader>
+                <ModalBody>
+                    <SchoolForm onSubmit={onLoginFormSubmit}  data={data} handleShow={handleShow} />
+                </ModalBody>
+            </Modal>
+        </>
     );
 }

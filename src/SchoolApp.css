@@ -20,8 +20,7 @@
 }
 
 .schoolapp-body {
-  padding: 0rem 2rem 2rem 2rem;
-  position: absolute;
+  padding: 2rem 2rem 2rem 2rem;
 }
 
 
@@ -46,14 +45,12 @@
 .grid-card-group {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .grid-card-container {
   margin: 1%;
   width: 30%;
-}
-
-.classroom {
 }
 
 .demo-b {
@@ -70,10 +67,6 @@
 .schoolapp-header {
   overflow: hidden;
   position: relative;
-  /*width: 100%;
-  height: 405px;
-  background-color: purple;
-  background-position: center;*/
 }
 
 .menu-card {
@@ -86,13 +79,18 @@
   opacity: 0.9;
 }
 
-.student-button {
+.creation-button {
   padding: 1rem;
 }
 
 .button-font {
   color: #ffffff !important;
 }
+
 .form-button-group {
   float: right;
+}
+
+.school-toast {
+  position: relative;
 }

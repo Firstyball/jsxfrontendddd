@@ -5,23 +5,48 @@ import client from "../api/student.js";
 import '../SchoolApp.css';
 import {useState} from "react";
 import {ModalComponent} from "./ModalComponent.jsx"
+import {ToastComponent} from "./ToastComponent.jsx";
 
 //Renderiza la información de un estudiante
 export const GridManager = ({data}) => {
 
-    function refreshPage() {
-        window.location.reload(false);
-    }
     function deleteStudents(id) {
-        client.delete(`/delete/${id}`).then(refreshPage)
+        client.delete(`/delete/${id}`).then(refreshPage());
     }
 
     const [show, setShow] = useState(false);
-    const handleShow = () => {console.log('me ejecuto papi'); setShow(!show);};
+
+    const refreshPage = () => {
+        window.location.reload(false);
+    };
+
+    const handleShow = (type) => {
+        console.log(`handleShow typeOf: ${type}`)
+
+        switch (type) {
+            case "cancel":
+                setShow(!show);
+              break;
+            case "edit":
+                setShow(!show);
+                break;
+            case 'success':
+                setShow(!show);
+                refreshPage();
+              break;
+            default:
+              console.error(`Wrong type`);
+          }
+    };
+
+    const [showA, setShowA] = useState(true);
+    const toggleShowA = () => setShowA(!showA);
 
 
     return(
     <>
+        <ToastComponent toggleShowA={toggleShowA} showA={showA} variant="success" title="Satisfactorio!" message="Creación de estudiante exitosa"></ToastComponent>
+
         <Card outline className="grid-card-container">
             <CardBody>
                 <CardTitle tag="h5">
@@ -42,7 +67,7 @@ export const GridManager = ({data}) => {
                     </CardText>
                 </div>
                 <div className="grid-button-container">
-                    <Button block outline color="primary" className="grid-button" onClick={() => {handleShow();}}>
+                    <Button block outline color="primary" className="grid-button" onClick={() => handleShow("edit")}>
                         Modificar
                     </Button>
                     <Button block outline color="danger" className="grid-button" onClick={() => deleteStudents(data.id)}>
@@ -52,7 +77,7 @@ export const GridManager = ({data}) => {
             </CardBody>
         </Card>
 
-        <ModalComponent show={show} data={data} handleShow={handleShow}/>
+        <ModalComponent show={show} data={data} handleShow={handleShow} title="Modificar Estudiante"/>
 
     </>
     );

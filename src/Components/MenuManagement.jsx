@@ -12,11 +12,10 @@ export const MenuManagement = ({students}) => {
             <div className="grid-card-group menu-background">
                 <Card className="grid-card-container menu-card">
                     <CardTitle tag="h5">
-                        <IoMan className="font-size-xl"/> {students.length} Students
+                        <IoMan className="font-size-xl"/> {students.length} Estudiantes
                     </CardTitle>
                     <CardText>
-                        With supporting text below as a natural lead-in to additional
-                        content.
+                        Aquí puede gestionar los estudiantes
                     </CardText>
                     <Link to="/students"><Button outline color="info">Gestionar estudiantes</Button></Link>
 
@@ -26,8 +25,7 @@ export const MenuManagement = ({students}) => {
                         <IoSchoolOutline className="font-size-xl"/> 20 Profesores
                     </CardTitle>
                     <CardText>
-                        With supporting text below as a natural lead-in to additional
-                        content.
+                        Aquí puede gestionar los profesores
                     </CardText>
                     <Link to="/creation"><Button outline color="info">Gestionar Profesores</Button></Link>
                 </Card>
@@ -36,8 +34,7 @@ export const MenuManagement = ({students}) => {
                         <IoSettings className="font-size-xl"/> 13 Empleados
                     </CardTitle>
                     <CardText>
-                        With supporting text below as a natural lead-in to additional
-                        content.
+                        Aquí puede gestionar los empleados
                     </CardText>
                     <Link to="/click"><Button outline color="info">Gestionar Empleados</Button></Link>
                 </Card>

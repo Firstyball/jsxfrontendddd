@@ -1,12 +1,11 @@
-import {useState} from 'react';
-import {Button} from "reactstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {GridManager} from "./GridManager";
-import '../SchoolApp.css'
+import {useEffect, useState} from 'react';
+import {Button, Row, Col, Container} from 'reactstrap';
 import {ModalComponent} from "./ModalComponent.jsx"
-import { ToastComponent } from './ToastComponent';
+import '../SchoolApp.css'
+import {GridManager} from "./GridManager";
+import {ToastComponent} from "./ToastComponent.jsx";
 
-export const ManageStudents = ({students}) => {
+export const ManageTeacher = ({teachers}) =>{
 
     const refreshPage = () => {
         window.location.reload(false);
@@ -26,38 +25,39 @@ export const ManageStudents = ({students}) => {
                 break;
             case "success":
                 setShow(!show);
-                toggleShowA(true);
+                refreshPage();
               break;
             default:
                 console.error(`Wrong type`);
           }
     };
 
-
     const [showA, setShowA] = useState(false);
     const toggleShowA = () => setShowA(!showA);
 
+
     return (
-        <>
-            <ToastComponent toggleShowA={toggleShowA} showA={showA} variant="success" title="Satisfactorio!" message="Creación de estudiante exitosa"></ToastComponent>
-            <ModalComponent show={show} handleShow={handleShow} title="Crear Nuevo Estudiante"/>
+        <div>
+
+            <ToastComponent toggleShowA={toggleShowA} showA={showA} variant="success" title="Satisfactorio!" message="Creación de profesor exitosa"></ToastComponent>
+
             <div className="creation-button">
                 <Button color="info" onClick={() => handleShow("create")} className="button-font">
-                    <span className="font-size-l">Agregar Nuevo Estudiante</span>
+                    <span className="font-size-l">Agregar Nuevo Profesor</span>
                 </Button>
             </div>
 
             <div className="grid-card-group">
                 {
-                    students.map((student) =>
-                        <GridManager key={student.id} data={student}/>
+                    teachers.map((teacher) =>
+                        <GridManager key={teacher.id} data={teacher}/>
                     )
                 }
             </div>
 
+            <ModalComponent show={show} handleShow={handleShow} title="Crear Nuevo Profesor"/>
 
-
-      </>
+        </div>
     );
-
 }
+
