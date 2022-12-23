@@ -11,10 +11,8 @@ export const ManageEmployee = ({students}) => {
 
     return (
         <>
-            <div className="creation-button">
-                <Button color="info" onClick={handleShow} className="button-font">
-                    <span className="font-size-l">Agregar Nuevo Empleado</span>
-                </Button>
+            <div className="creation-button fs-1 d-flex align-items-center justify-content-center">
+               <h5 className="justify-content-center">NO TIENES PERMISOS PARA GESTIONAR ESTA INFORMACION</h5>
             </div>
 
             <ModalComponent show={show} handleShow={handleShow} title="Crear Nuevo Empleado"/>
